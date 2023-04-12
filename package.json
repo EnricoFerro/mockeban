@@ -7,7 +7,8 @@
     "private": true,
     "dependencies": {
         "@sap/cds": "^6",
-        "express": "^4"
+        "express": "^4",
+        "rimraf": "^5.0.0"
     },
     "devDependencies": {
         "sqlite3": "^5"
@@ -15,7 +16,9 @@
     "scripts": {
         "start": "cds-serve",
         "mock": "cds watch --with-mocks",
-        "watch:mock": "cds watch --with-mocks --in-memory?"
+        "watch:mock": "cds watch --with-mocks --in-memory?",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
     },
     "eslintConfig": {
         "extends": "eslint:recommended",
