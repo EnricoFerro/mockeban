@@ -1,5 +1,4 @@
 namespace com.cnhi.btp.ebansrvs;
-
 @sap.creatable : 'false'
 @sap.updatable : 'false'
 @sap.deletable : 'false'
