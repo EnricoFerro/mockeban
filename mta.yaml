@@ -1,0 +1,38 @@
+_schema-version: "3.1"
+ID: mockebanApp
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: mockebanApp-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: mockebanApp-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+- name: mockebanApp-db-deployer
+  type: hdb
+  path: db
+  requires:
+  - name: mockebanApp-db
+  parameters:
+    buildpack: nodejs_buildpack
+
+resources:
+- name: mockebanApp-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npx -p @sap/cds-dk cds build --production
