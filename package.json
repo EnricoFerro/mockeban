@@ -7,14 +7,18 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^6",
-    "express": "^4"
+    "express": "^4",
+    "hdb": "^0.19.0"
   },
   "devDependencies": {
     "sqlite3": "^5"
   },
   "scripts": {
     "start": "cds-serve",
-    "mock" : "cds watch --with-mocks"
+    "mock" : "cds watch --with-mocks",
+    "build:cds": "cds build --production",
+    "build:mta": "mbt build -t gen --mtar mta.tar",
+    "deploy": "cf deploy gen/mta.tar"
   },
     "eslintConfig": {
         "extends": "eslint:recommended",
