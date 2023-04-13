@@ -19,7 +19,9 @@
     "mock": "cds watch --with-mocks",
     "build:cds": "cds build --production",
     "build:mta": "mbt build -t gen --mtar mta.tar",
-    "deploy": "cf deploy gen/mta.tar"
+    "deploy": "cf deploy gen/mta.tar",
+    "deploy:mta": "npm run build:cds && npm run build:mta && npm run deploy",
+    "seed-deploy:hibrid": "cds deploy --to hana --profile hybrid"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -50,6 +52,11 @@
     "requires": {
       "db": {
         "kind": "sql"
+      },
+      "[hybrid]": {
+        "db": {
+          "kind": "hana-cloud"
+        }
       }
     },
     "hana": {
