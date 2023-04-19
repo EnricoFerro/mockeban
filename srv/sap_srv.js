@@ -26,4 +26,23 @@ module.exports = async (srv) => {
         return cds.run(req.query);  
       }
     })
+
+    const { DefectSet } = srv.entities
+    /**
+     * This overwrite the read:
+     *   * If the "search" is used all the "level" is replaced from the ebanSet.Banfn
+     *   * Otherwise it return the standard value
+     */
+    srv.on(['READ'], DefectSet, (req) => {
+        if (req.req.query.$search) {
+            return SELECT.from(DefectSet);
+        } else {
+        //Every other cases  
+          return cds.run(req.query);  
+        }
+
+    });
 }
+
+
+

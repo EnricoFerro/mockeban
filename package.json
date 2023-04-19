@@ -21,7 +21,7 @@
     "build:mta": "mbt build -t gen --mtar mta.tar",
     "deploy": "cf deploy gen/mta.tar",
     "deploy:mta": "npm run build:cds && npm run build:mta && npm run deploy",
-    "seed-deploy:hibrid": "cds deploy --to hana --profile hybrid"
+    "seed-deploy:hybrid": "cds deploy --to hana --profile hybrid"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
