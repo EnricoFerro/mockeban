@@ -33,7 +33,7 @@ module.exports = async (srv) => {
      *   * If the "search" is used all the "level" is replaced from the ebanSet.Banfn
      *   * Otherwise it return the standard value
      */
-    srv.on(['READ'], DefectSet, (req) => {
+    srv.on(['READ'], 'DefectSet', (req) => {
         if (req.req.query.$search) {
             return SELECT.from(DefectSet);
         } else {
