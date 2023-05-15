@@ -291,5 +291,50 @@ entity DefectSet {
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   Service : String(3) not null;
+
+  DefectExposed  : Association to many DefectExposedSet on DefectExposed.DefectCode = DefectCode;
+};
+
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.pageable : 'false'
+@sap.content.version : '1'
+entity DefectExposedSet {
+  @sap.label : 'Defect Code'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key DefectCode : String(40) not null;
+  @sap.label : 'Counter'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key Counter : String(40) not null;
+  @sap.unit : 'Curr'
+  @sap.label : 'Total Material'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Label : String(40) not null;
+  @sap.unit : 'Curr'
+  @sap.label : 'Total Labor Values'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Content : String(40) not null;
+  @sap.unit : 'Curr'
+  @sap.label : 'Total Other'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Description : String(40) not null;
+
+  Defect: Association to DefectSet
 };
 

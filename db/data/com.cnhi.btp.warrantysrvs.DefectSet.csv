@@ -1,2 +1,2 @@
 DefectCode;TotalParts;TotalLabor;TotalOther;TotalAdd;Curr;TotalFail;DoaLevel;Warranty;Decision;DecisionText;Service
-Defect1;1;1;1;1;PZ;1;100;X;Replace;ReplaceAll;REP
+000MANDATORYF0;1;1;1;1;PZ;1;100;X;Replace;ReplaceAll;REP

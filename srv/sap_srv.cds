@@ -7,7 +7,7 @@ service EbanService {
 
  entity ebanSet
     as projection on ebansrvs.ebanSet;
-
+   
  entity ApproverSet
     as projection on  ebansrvs.ApproverSet;
 
@@ -23,6 +23,8 @@ service WarrantyService {
  entity DefectSet
     as projection on  warrantysrvs.DefectSet;
 
+ entity DefectExposedSet 
+   as projection on warrantysrvs.DefectExposedSet;
 
  entity WarrantySet
     as projection on  warrantysrvs.WarrantySet;    

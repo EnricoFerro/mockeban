@@ -35,11 +35,10 @@ module.exports = async (srv) => {
      */
     srv.on(['READ'], 'DefectSet', (req) => {
         if (req.req.query.$search) {
-            return SELECT.from(DefectSet);
-        } else {
-        //Every other cases  
-          return cds.run(req.query);  
+          req.query.SELECT.search = undefined;
         }
+        //Every other cases  
+        return cds.run(req.query);  
 
     });
 }

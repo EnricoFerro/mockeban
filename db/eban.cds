@@ -286,4 +286,26 @@ entity ebanSet {
   @sap.filterable : 'false'
   @sap.semantics : 'unit-of-measure'
   Meins : String(3) not null;
+  @Common.Label : 'Has Comment'
+  @sap.label : 'Has Comment'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  @sap.semantics : 'has-comment'
+  HasComment : Boolean not null default false;
+  @Common.Label : 'Has Document'
+  @sap.label : 'Has Document'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  @sap.semantics : 'has-document'  
+  HasDocument: Boolean not null default false;
+  @Common.Label : 'Comment on Purchase Document'
+  @sap.label : 'Comment on Purchase Document'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  @sap.semantics : 'sap-comment'  
+  SapComment: String;
 };
+
