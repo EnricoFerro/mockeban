@@ -26,7 +26,7 @@ jobs:
     - name: Build MTA
       run: mbt build -p cf
     - name: Deploy to Cloud Foundry
-      uses: EnricoFerro/cf-cli-action@2
+      uses: EnricoFerro/cf-cli-action@v2
       with:
         cf_api: ${{ secrets.CF_TRIAL_API }}
         cf_username: ${{ secrets.CF_USERNAME }}
