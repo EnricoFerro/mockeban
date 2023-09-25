@@ -8,20 +8,23 @@
   "dependencies": {
     "@sap/cds": "^6",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "body-parser": "^1.20.2",
     "express": "^4",
-    "hdb": "^0.19.0"
+    "hdb": "^0.19.0",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "sqlite3": "^5"
   },
   "scripts": {
-    "start": "cds-serve",
+    "start": "cds run",
     "mock": "cds watch --with-mocks",
     "build:cds": "cds build --production",
     "build:mta": "mbt build -t gen --mtar mta.tar",
     "deploy": "cf deploy gen/mta.tar",
     "deploy:mta": "npm run build:cds && npm run build:mta && npm run deploy",
-    "seed-deploy:hybrid": "cds deploy --to hana --profile hybrid"
+    "seed-deploy:hybrid": "cds deploy --to hana --profile hybrid",
+    "undeploy": "cf undeploy mockebanapp --delete-services --delete-service-keys --delete-service-brokers"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",

@@ -307,5 +307,101 @@ entity ebanSet {
   @sap.filterable : 'false'
   @sap.semantics : 'sap-comment'  
   SapComment: String;
+  @Common.Label : 'Has Comment Item'
+  @sap.label : 'Has Comment Item'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  @sap.semantics : 'has-comment-item'  
+  HasItemComment: Boolean not null default false;
+  @Common.Label : 'Comment on Purchase Document Item'
+  @sap.label : 'Comment on Purchase Document Item'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  @sap.semantics : 'sap-comment-item'  
+  SapItemComment: String;
 };
 
+@cds.external : true
+@cds.persistence.skip : false
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.searchable : 'true'
+@sap.content.version : '1'
+entity AttachmentSet {
+  @Common.Label : 'Purchase Req.'
+  @sap.label : 'Purchase Req.'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  key Banfn : String(10) not null;
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key FileName : String(241) not null;  
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  MimeType : String(241) not null;  
+  @Common.Label : 'Created by'
+  @sap.label : 'Created by'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  CreatedBy : String(241) not null;
+  @odata.Type : 'Edm.DateTime'
+  @odata.Precision : 7
+  @sap.label : 'Date'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  CreateDate : Timestamp not null;
+}
+
+
+@cds.external : true
+@cds.persistence.skip : false
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.searchable : 'true'
+@sap.content.version : '1'
+entity AttachmentStreamSet {
+  @Common.Label : 'Purchase Req.'
+  @sap.label : 'Purchase Req.'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  key Banfn : String(10) not null;
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key FileName : String(241) not null;  
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  MimeType : String(241) not null;  
+  @Common.Label : 'Created by'
+  @sap.label : 'Created by'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  CreatedBy : String(241) not null;
+  @odata.Type : 'Edm.DateTime'
+  @odata.Precision : 7
+  @sap.label : 'Date'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  CreateDate : Timestamp not null;
+}

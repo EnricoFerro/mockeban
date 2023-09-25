@@ -1,17 +1,4 @@
-using com.cnhi.btp.ebansrvs from '../db/eban';
 using com.cnhi.btp.warrantysrvs from '../db/warranty';
-
-@path: 'ZBTP_POC1_GTW_SRV'
-// @requires: 'authenticated-user'
-service EbanService {
-
- entity ebanSet
-    as projection on ebansrvs.ebanSet;
-   
- entity ApproverSet
-    as projection on  ebansrvs.ApproverSet;
-
-}
 
 @path: 'ZBTP_POC3_GTW_SRV'
 // @requires: 'authenticated-user'
@@ -26,8 +13,21 @@ service WarrantyService {
  entity DefectExposedSet 
    as projection on warrantysrvs.DefectExposedSet;
 
+
+ entity DefectItemDetailSet 
+   as projection on warrantysrvs.DefectItemDetailSet;
+
+ entity DefectVersionSet
+    as projection on  warrantysrvs.DefectVersionSet;
+
+
  entity WarrantySet
     as projection on  warrantysrvs.WarrantySet;    
 
+ entity AttachmentSet
+   as projection on warrantysrvs.AttachmentSet;
+
+ entity AttachmentStreamSet
+   as projection on warrantysrvs.AttachmentStreamSet;
 }
 

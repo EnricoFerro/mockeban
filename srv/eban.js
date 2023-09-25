@@ -1,7 +1,8 @@
 const cds = require('@sap/cds');
+const { error } = require('console');
 module.exports = async (srv) => {
 
-  const { ApproverSet } = srv.entities
+  const { ApproverSet, ebanSet } = srv.entities
   /**
    * This overwrite the read:
    *   * If the "search" is used all the "level" is replaced from the ebanSet.Banfn
@@ -27,20 +28,39 @@ module.exports = async (srv) => {
       }
     })
 
-    const { DefectSet } = srv.entities
+  /**
+   * This overwrite the read:
+   *   * If the "search" is used all the "level" is replaced from the ebanSet.Banfn
+   *   * Otherwise it return the standard value
+   */
+  srv.on(['UPDATE'], ebanSet, (req) => {
+    const Banfn = req.query.UPDATE.data.Banfn,
+          Bnfpo = req.query.UPDATE.data.Bnfpo
+ 
+    return new Promise((resolve,reject) => {
+      SELECT.one.from(ebanSet).where({ Banfn: Banfn }).and({ Bnfpo: Bnfpo }).then(resp =>{
+        const Frgzu = resp.Frgzu = resp.Frgzu + 'X';
+        cds.run(UPDATE(ebanSet, { Banfn, Bnfpo }).set({ Frgzu }))
+          .then(() => { resolve(resp); })
+          .catch(error => reject(error));
+      }).catch(error => {
+        reject(error);
+      });
+    }) 
+  });
+
     /**
      * This overwrite the read:
      *   * If the "search" is used all the "level" is replaced from the ebanSet.Banfn
      *   * Otherwise it return the standard value
      */
-    srv.on(['READ'], 'DefectSet', (req) => {
+    /*srv.on(['READ'], 'DefectSet', (req) => {
         if (req.req.query.$search) {
           req.query.SELECT.search = undefined;
         }
         //Every other cases  
         return cds.run(req.query);  
-
-    });
+    });*/
 }
 
 

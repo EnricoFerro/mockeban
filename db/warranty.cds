@@ -204,6 +204,11 @@ entity WarrantySet {
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   Decision : String(8) not null;
+
+  Attachments  : Association to many AttachmentSet on Attachments.Clmno = Clmno;
+
+  Defects : Association to many DefectSet on Defects.Clmno = Clmno; 
+  DefectsVersion : Association to many DefectVersionSet on DefectsVersion.Clmno = Clmno; 
 };
 
 
@@ -213,6 +218,12 @@ entity WarrantySet {
 @sap.pageable : 'false'
 @sap.content.version : '1'
 entity DefectSet {
+  @sap.label : 'Claim'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key Clmno : String(12) not null;
   @sap.label : 'Defect Code'
   @sap.creatable : 'false'
   @sap.updatable : 'false'
@@ -293,7 +304,114 @@ entity DefectSet {
   Service : String(3) not null;
 
   DefectExposed  : Association to many DefectExposedSet on DefectExposed.DefectCode = DefectCode;
+
+  ItemDetails  : Association to many DefectItemDetailSet on ItemDetails.DefectCode = DefectCode;
 };
+
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.pageable : 'false'
+@sap.content.version : '1'
+entity DefectVersionSet {
+  @sap.label : 'Claim'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key Clmno : String(12) not null;  
+  @sap.label : 'Item'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key Item : String(40) not null;
+  @sap.label : 'Defect Code'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key DefectCode : String(40) not null;
+  @sap.label : 'Warranty type'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Warranty : String(1) not null;
+  @sap.label : 'Item type'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  ItemType : String(3) not null;  
+  @Common.Label : 'Material'
+  @sap.label : 'Material'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  Matnr : String(18) not null;  
+  @Common.Label : 'Material Description'
+  @sap.label : 'Material Description'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  Maktx : String(40);  
+  @sap.unit : 'Meins'
+  @Common.Label : 'Quantity'
+  @sap.label : 'Quantity'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  Menge : Decimal(13, 3) not null; 
+  @Common.Label : 'UM'
+  @sap.label : 'UM'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.filterable : 'false'
+  Meins : String(3) not null; 
+  @sap.label : '% Service Partecip'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Service : String(3) not null;   
+  @sap.label : 'Decision'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Decision : String(8) not null;
+  @sap.label : 'Decision'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  DecisionText : String(100) not null;
+  @sap.unit : 'Curr'
+  @sap.label : 'Total Amount'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  TotalAmount : Decimal(14, 3) not null;
+  @sap.unit : 'Curr'
+  @sap.label : 'Total Approved'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  TotalApproved : Decimal(14, 3) not null;
+  @sap.label : 'Currency'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  @sap.semantics : 'currency-code'
+  Curr : String(5) not null;
+
+  DefectExposed  : Association to many DefectExposedSet on DefectExposed.DefectCode = DefectCode;
+
+}
 
 @sap.creatable : 'false'
 @sap.updatable : 'false'
@@ -313,28 +431,165 @@ entity DefectExposedSet {
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   key Counter : String(40) not null;
-  @sap.unit : 'Curr'
-  @sap.label : 'Total Material'
+  @sap.label : 'Label'
   @sap.creatable : 'false'
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   Label : String(40) not null;
-  @sap.unit : 'Curr'
-  @sap.label : 'Total Labor Values'
+  @sap.label : 'Content'
   @sap.creatable : 'false'
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   Content : String(40) not null;
-  @sap.unit : 'Curr'
-  @sap.label : 'Total Other'
+  @sap.label : 'Description'
   @sap.creatable : 'false'
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   Description : String(40) not null;
 
-  Defect: Association to DefectSet
 };
 
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.pageable : 'false'
+@sap.content.version : '1'
+entity DefectItemDetailSet {
+  @sap.label : 'Defect Code'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key DefectCode : String(40) not null;
+  @sap.label : 'Rule Code'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key RuleCode : String(40) not null;
+  @sap.label : 'Output Code'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  OutputCode : String(40) not null;
+  @sap.label : 'Rule Check'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  RuleCheck : String(40) not null;
+  @sap.unit : 'Curr'
+  @sap.label : 'Total Other'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Value : String(40) not null;
+  @sap.label : 'Curr.'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Curr : String(40) not null;
+  @sap.label : 'Alphanumerical'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Alphanumerical : String(40) not null;
+  @sap.label : 'Message'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Message : String(40) not null;
+  @sap.label : 'Percentage'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Percentage : String(40) not null;
+};
+
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.pageable : 'false'
+@sap.content.version : '1'
+entity AttachmentSet {
+  @sap.label : 'Claim'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key Clmno : String(12) not null;
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key FileName : String(241) not null;  
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  MimeType : String(241) not null;  
+  @Common.Label : 'Created by'
+  @sap.label : 'Created by'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  CreatedBy : String(241) not null;
+  @odata.Type : 'Edm.DateTime'
+  @odata.Precision : 7
+  @sap.label : 'Date'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  CreateDate : Timestamp not null;
+}
+
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.pageable : 'false'
+@sap.content.version : '1'
+@cds.persistence.skip : true
+entity AttachmentStreamSet {
+  @sap.label : 'Claim'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key Clmno : String(12) not null;
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key FileName : String(241) not null;  
+  @sap.label : 'File Name'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  MimeType : String(241) not null;  
+  @Common.Label : 'Created by'
+  @sap.label : 'Created by'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  CreatedBy : String(241) not null;
+  @odata.Type : 'Edm.DateTime'
+  @odata.Precision : 7
+  @sap.label : 'Date'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  CreateDate : Timestamp not null;
+}

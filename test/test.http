@@ -1,0 +1,23 @@
+### Requires REST Client for VS Code
+### https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+###
+@protocol = http
+#@protocol = https
+@host = localhost
+#@host = 21b00683trial-dev-mockebanapp-srv.cfapps.us10.hana.ondemand.com
+@port = 4004
+#@port = 443
+
+### Read eban
+GET {{protocol}}://{{host}}:{{port}}/sap/opu/odata/sap/ZBTP_POC1_GTW_SRV/ebanSet
+Authorization: Basic admin:
+
+### Get eban
+GET {{protocol}}://{{host}}:{{port}}/sap/opu/odata/sap/ZBTP_POC1_GTW_SRV/ebanSet(Banfn='10558877',Bnfpo='10')
+
+
+### PUT eban
+PUT {{protocol}}://{{host}}:{{port}}/sap/opu/odata/sap/ZBTP_POC1_GTW_SRV/ebanSet(Banfn='10558877',Bnfpo='10')
+Content-Type: application/json
+
+{"Frgzu":"A"}
