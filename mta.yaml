@@ -9,7 +9,7 @@ build-parameters:
     - builder: custom
       commands:
         - npm ci
-        - npx -p @sap/cds-dk@7.2.1 cds build --production
+        - npx -p @sap/cds-dk@7.2.0 cds build --production
 
 modules:
   - name: mockebanapp-srv
