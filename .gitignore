@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # CAP ZBTP_POC1_GTW_SRV
+=======
+# CAP eban
+>>>>>>> clean
 _out
 *.db
 *.sqlite
@@ -29,3 +33,8 @@ mta_archives/
 # IDEs
 # .vscode
 # .idea
+
+#Mtb generator
+Makefile*
+
+./uploads
