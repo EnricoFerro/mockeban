@@ -1,6 +1,6 @@
 using com.cnhi.btp.warrantysrvs from '../db/warranty';
 
-@path: 'ZBTP_POC3_GTW_SRV'
+@path: '/ZBTP_POC3_GTW_SRV'
 // @requires: 'authenticated-user'
 service WarrantyService {
 

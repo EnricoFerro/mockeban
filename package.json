@@ -65,6 +65,15 @@
         "db": {
           "kind": "hana-cloud"
         }
+      },
+      "[production]": {
+          "auth":  {
+            "kind": "xsuaa",
+            "restrict_all_services": false
+          },
+          "db": {
+              "kind": "hana-cloud"
+          }
       }
     },
     "hana": {

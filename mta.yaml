@@ -25,6 +25,8 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: mockebanapp-db
+      - name: mockebanapp-auth
+
 
   - name: mockebanapp-db-deployer
     type: hdb
@@ -42,3 +44,9 @@ resources:
       service-plan: hdi-shared
     properties:
       hdi-service-name: ${service-name}
+  - name: mockebanapp-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application

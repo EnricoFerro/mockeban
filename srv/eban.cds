@@ -1,6 +1,6 @@
 using com.cnhi.btp.ebansrvs from '../db/eban';
 
-@path: 'ZBTP_POC1_GTW_SRV'
+@path: '/ZBTP_POC1_GTW_SRV'
 // @requires: 'authenticated-user'
 service EbanService {
 
