@@ -16,7 +16,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 18
     - name: Install MTA Build Tool
       run: npm install -g mbt
     # Do not generate package-lock.json
@@ -33,5 +33,5 @@ jobs:
         cf_password: ${{ secrets.CF_PASSWORD }}
         cf_org: ${{ secrets.CF_TRIAL_ORG }}
         cf_space: ${{ secrets.CF_TRIAL_SPACE }}
-        command: deploy ./mta_archives/eban.0.0.mtar --retries 1
+        command: deploy ./mta_archives/mockebanapp_1.0.0.mtar --retries 1
 
